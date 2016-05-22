@@ -2,7 +2,7 @@
 #include<cmath>
 #include<string.h>
 using namespace std;
-
+//http://vn.spoj.com/problems/BONES/
 int main()
 {
     int s = 0, f[100] , s1 , s2 , s3,t = 0;
