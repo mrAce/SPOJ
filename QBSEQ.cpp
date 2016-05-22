@@ -3,7 +3,7 @@
 #include<algorithm>
 #define IMAX 1e8
 using namespace std;
-
+//http://vn.spoj.com/problems/QBSEQ/
 int sup(int a , int b,int k)
 {
     int tmp = ( a- b) % k;
