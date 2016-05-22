@@ -5,7 +5,7 @@
 #include<iostream>
 #define REP(i,a,b) for(int i = int(a) ; i <= int(b) ;i++ )
 using namespace std;
-
+//http://vn.spoj.com/problems/QBMAX/
 int main()
 {
     int n ,m ,a[305][305] ,f[305][305];
