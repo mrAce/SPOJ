@@ -7,7 +7,7 @@
 #define readInt(a) scanf("%d",&a);
 #define write(a) printf("%d",a);
 using namespace std;
-
+// bài này dùng giải thuật nhị phân 
 int Binsearch(int i , int j , int k , int a[])
 {
     int l = i , r  =  j , tmp = 0 ;
