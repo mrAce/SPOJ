@@ -1,0 +1,96 @@
+#include<iostream>
+#include<bits/stdc++.h>
+#include<string.h>
+#include<string>
+#include<cstdio>
+#define ll long long int
+struct coordinate{
+    int x , y ;
+    int sum;
+};
+int k , m = 0 , s[100][100] ;
+coordinate a[100] , b[100];
+void Init()
+{
+    for(int i = 1 ; i <= 8 ; i++)
+        for(int j = 1 ;j<=8 ;j++)
+            {
+            if(s[i][j] != 1 ) m++, b[m].x = i , b[m].y = j , b[m].sum = 0 ;
+        }
+}
+
+bool HAU(int i , int j)
+{
+    int x1 = a[i].x ,y1 = a[i].y;
+    int x2 = b[j].x,y2 = b[j].y;
+    if (abs(x1 - x2 ) == abs(y1 - y2)) return true;
+    if (x1 == x2 ) return true;
+    if (y1 == y2) return true;
+
+ return false ;
+}
+
+bool TUONG(int i , int j)
+{
+    int x1 = a[i].x , y1 = a[i].y;
+    int x2 =  b[j].x , y2 = b[j].y;
+    if (abs(x1 - x2) == abs(y1 - y2)) return true;
+
+    return false;
+}
+
+bool MA(int i , int j)
+{
+    int x1 = a[i].x , y1 = a[i].y;
+    int x2 = b[j].x , y2 = b[j].y;
+    if (abs(x1 - x2) == 1 && abs(y1-y2) == 2) return true;
+    if (abs(y1-y2) == 1 && abs(x1 - x2)==2 ) return true;
+    return false;
+ }
+
+bool XE(int i , int j)
+{
+
+    int x1 = a[i].x, y1 = a[i].y;
+    int x2 =b[j].x , y2 = b[j].y;
+    if (x1 == x2 || y1 == y2) return true;
+    return false;
+}
+
+
+int main() {
+    ll hau[100][100] , ma[100][100] , xe[100][100], tuong[100][100];
+    memset(s,0,sizeof(s));
+    memset(hau,0,sizeof(hau)) ;
+    memset(ma,0,sizeof(ma));
+    memset(xe,0,sizeof(xe));
+    memset(tuong,0,sizeof(tuong));
+    std ::cin >> k ;
+    for(int i = 1 ; i <= k ; i++)
+        {
+       scanf("%d%d%d",&a[i].x,&a[i].y,&a[i].sum);
+        s[a[i].x][a[i].y] = 1 ;
+    }
+    Init();
+    for(int i = 1 ; i <= k ;i++)
+        for(int j = 1 ;j<=  m ;j++)
+            {
+            if(HAU(i,j)) hau[i][j] = 1 ;
+            if(MA(i,j))  ma[i][j] = 1;
+            if (TUONG(i,j)) tuong[i][j] = 1 ;
+            if(XE(i,j)) xe[i][j] = 1;
+        }
+    ll tmp = 0 , res = 0;
+    for(int Hau = 1 ; Hau <= m ;Hau++)
+        for(int Tuong = 1 ; Tuong <= m ;Tuong++) if (Hau != Tuong)
+            for(int Xe = 1 ; Xe <= m ;Xe++) if (Xe != Hau &&Xe!=Tuong)
+              for(int Ma = 1 ; Ma <= m ;Ma++) if(Ma != Hau && Ma != Tuong && Ma != Xe)
+                    {
+
+                    for(int i = 1 ; i <= k ;i++) if(ma[i][Ma] || xe[i][Xe] || tuong[i][Tuong] || hau[i][Hau]) tmp += a[i].sum;
+                    if (res < tmp  ) res = tmp;
+                    tmp = 0 ;
+              }
+    printf("%lld",res);
+    return 0;
+}
