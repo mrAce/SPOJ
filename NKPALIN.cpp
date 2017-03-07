@@ -7,7 +7,7 @@ using namespace std  ;
 int main()
 {
     string a , b ;
-    int f[200][200];
+    int f[4002][4002];
     cin >> a ;
     b =  a ;
     int len = a.size() - 1;
